@@ -1,0 +1,31 @@
+import profesionales.*
+import universidades.*
+import empresa.*
+describe "group of tests" {
+	var profesional1 = new ProfesionalAsociado() 
+	var profesional2 = new ProfesionalVinculado()
+	var profesional3 = new ProfesionalLibre()
+	var profesional4 = new ProfesionalLibre()
+	var unahur = new Universidad()
+	
+	var empresa1 = new Empresa()
+	
+	fixture{
+		unahur.provincia("buenos aires")
+		unahur.honorariosRecomendados(8000)
+		profesional2.universidad(unahur)
+		profesional3.honorariosPorHora(4000)
+		profesional3.provinciasDondePuedeTrabajar(#{"buenos aires","cordoba"})
+		profesional4.honorariosPorHora(50000)
+		profesional4.provinciasDondePuedeTrabajar(#{"buenos aires","cordoba"})
+		empresa1.agregarProfessionales(#{profesional1,profesional2,profesional4})
+	}
+	
+	
+	
+	test "testX" {
+
+		assert.notThat(empresa1.esPocoAtractivo(profesional3))
+
+	}
+}
